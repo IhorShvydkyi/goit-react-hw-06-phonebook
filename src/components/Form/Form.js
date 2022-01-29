@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import actions from "../../redux/actions";
 import { FormStyled, Label, Input, AddButton } from "./Form.styled";
 
-export default function Form({ onSubmit }) {
+export default function Form() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+
+  const contacts = useSelector((state) => state.contacts.items);
+  const dispatch = useDispatch();
 
   const inputNameId = uuidv4();
   const inputNumberId = uuidv4();
@@ -40,8 +45,12 @@ export default function Form({ onSubmit }) {
     setNumber("");
   };
 
+  const onSubmit = () => {
+    dispatch(actions.addContact(name, number));
+  };
+
   return (
-    <FormStyled onSubmit={handleAddContact}>
+    <FormStyled onSubmit={handleAddContact} contacts={contacts}>
       <Label htmlFor={inputNameId}>
         Name
         <Input

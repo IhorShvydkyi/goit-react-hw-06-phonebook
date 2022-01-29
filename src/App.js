@@ -41,7 +41,7 @@ export default function App() {
   return (
     <Container>
       <h1>Phonebook</h1>
-      <Form onSubmit={onSubmitContactForm} />
+      <Form />
       <h2>Contacts</h2>
       <Filter onChange={handleContactsFilter} value={filter} />
       {getVisibleContacts().length === 0 && filter.length > 0 ? (
