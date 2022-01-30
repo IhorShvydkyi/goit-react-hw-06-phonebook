@@ -11,6 +11,7 @@ const getValue = (key, initValue) => {
   }
   return initValue;
 };
+console.log(getValue());
 
 export const useLocaleStorage = (key, initValue) => {
   const [state, setState] = useState(getValue(key, initValue));

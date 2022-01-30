@@ -1,7 +1,7 @@
 import Container from "./components/Container/Container";
 import { Title, ContactsTitle } from "./App.styled";
 import Form from "./components/Form/Form";
-// import Filter from './components/Filter/Filter'
+import Filter from "./components/Filter/Filter";
 import ContactList from "./components/Contacts/ContactList";
 
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
         <Title>Phonebook</Title>
         <Form />
         <ContactsTitle>Contacts</ContactsTitle>
-        {/* <Filter /> */}
+        <Filter />
         <ContactList />
       </Container>
     </>

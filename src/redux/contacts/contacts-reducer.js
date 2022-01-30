@@ -1,14 +1,16 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import actions from "./contacts-actions";
+import { v4 as uuidv4 } from "uuid";
+
 import toastNotification from "../../components/Notifications/notification";
 import "react-toastify/dist/ReactToastify.css";
 
 const initialContatcts = [
-  { id: "id-1", name: "James Gunn", number: "439-23-65" },
-  { id: "id-2", name: "Peter Quell", number: "489-69-98" },
-  { id: "id-3", name: "Eden Hazard", number: "125-90-79" },
-  { id: "id-4", name: "Tom Holland", number: "342-54-41" },
+  { id: uuidv4(), name: "James Gunn", number: "439-23-65" },
+  { id: uuidv4(), name: "Peter Quell", number: "489-69-98" },
+  { id: uuidv4(), name: "Eden Hazard", number: "125-90-79" },
+  { id: uuidv4(), name: "Tom Holland", number: "342-54-41" },
 ];
 
 const items = createReducer(initialContatcts, {
