@@ -2,7 +2,7 @@
   "name": "goit-react-hw-06-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://IhorShvydkyi.github.io/goit-react-hw-06`-phonebook",
+  "homepage": "https://IhorShvydkyi.github.io/goit-react-hw-06-phonebook",
   "dependencies": {
     "@emotion/styled": "^11.6.0",
     "@reduxjs/toolkit": "^1.7.1",
