@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import actions from "../../redux/actions";
+import contactsActions from "../../redux/contacts/contacts-actions";
+import { getVisibleContacts } from "../../redux/contacts/contacts-selectors";
 import {
   ContactListStyled,
   ContactItem,
@@ -8,29 +9,18 @@ import {
 } from "./ContactList.styled";
 
 const ContactsList = () => {
+  const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts.items);
-  console.log(contacts);
-
-  // const contacts = useSelector((state) => {
-  // 	const { filter, items } = state.contacts
-  // 	const normalizedFilter = filter.toLowerCase()
-  // 	const filteredContacts = items.filter((item) =>
-  // 		// item.name.toLowerCase().includes(normalizedFilter)
-  // 		console.log('items : ', items)
-  // 	)
-  // 	return filteredContacts
-  // })
-
-  const onDelete = (id) => dispatch(actions.deleteContact(id));
+  const onDelete = (id) => dispatch(contactsActions.deleteContact(id));
 
   return (
     <ContactListStyled>
-      {contacts.map((contact) => (
-        <ContactItem key={contact.id}>
-          <Number>{contact.name}:</Number>
-          <Number>{contact.number}</Number>
-          <DeleteBtn type="button" onClick={() => onDelete(contact.id)}>
+      {contacts.map(({ id, name, number }) => (
+        <ContactItem key={id}>
+          <Number>
+            {name}: {number}
+          </Number>
+          <DeleteBtn type="button" onClick={() => onDelete(id)}>
             Delete
           </DeleteBtn>
         </ContactItem>

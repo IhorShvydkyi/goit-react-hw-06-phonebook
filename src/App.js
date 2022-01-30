@@ -1,8 +1,8 @@
 import Container from "./components/Container/Container";
-import { Title } from "./App.styled";
+import { Title, ContactsTitle } from "./App.styled";
 import Form from "./components/Form/Form";
 // import Filter from './components/Filter/Filter'
-// import ContactList from './components/Contacts/ContactList'
+import ContactList from "./components/Contacts/ContactList";
 
 export default function App() {
   return (
@@ -10,9 +10,9 @@ export default function App() {
       <Container>
         <Title>Phonebook</Title>
         <Form />
-        <h2>Contacts</h2>
+        <ContactsTitle>Contacts</ContactsTitle>
         {/* <Filter /> */}
-        {/* <ContactList /> */}
+        <ContactList />
       </Container>
     </>
   );
