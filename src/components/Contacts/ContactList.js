@@ -9,15 +9,16 @@ import {
 
 const ContactsList = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts.items);
 
-  const contacts = useSelector((state) => {
-    const { filter, items } = state.contacts;
-    const normalizedFilter = filter.toLowerCase();
-    const filteredContacts = items.filter((item) =>
-      item.name.toLowerCase().includes(normalizedFilter)
-    );
-    return filteredContacts;
-  });
+  // const contacts = useSelector((state) => {
+  // 	const { filter, items } = state.contacts
+  // 	const normalizedFilter = filter.toLowerCase()
+  // 	const filteredContacts = items.filter((item) =>
+  // 		item.name.toLowerCase().includes(normalizedFilter)
+  // 	)
+  // 	return filteredContacts
+  // })
 
   const onDelete = (id) => dispatch(actions.deleteContact(id));
 
