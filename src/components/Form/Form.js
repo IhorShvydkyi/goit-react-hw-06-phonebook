@@ -1,57 +1,44 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useLocaleStorage } from "../../hooks/useLocaleStorage";
+import { useDispatch } from "react-redux";
+import contactsActions from "../../redux/contacts/contacts-actions";
 import { v4 as uuidv4 } from "uuid";
-import actions from "../../redux/actions";
 import { FormStyled, Label, Input, AddButton } from "./Form.styled";
 
 export default function Form() {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
-
-  const contacts = useSelector((state) => state.contacts.items);
+  const [name, setName] = useLocaleStorage("name", "");
+  const [number, setNumber] = useLocaleStorage("number", "");
   const dispatch = useDispatch();
 
-  const inputNameId = uuidv4();
-  const inputNumberId = uuidv4();
-
   const handleChange = (evt) => {
-    switch (evt.target.name) {
+    const { name, value } = evt.target;
+    switch (name) {
       case "name":
-        setName(evt.target.value);
+        setName(value);
         break;
       case "number":
-        setNumber(evt.target.value);
+        setNumber(value);
         break;
 
       default:
         return;
     }
   };
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
 
-  const handleAddContact = (e) => {
-    e.preventDefault();
-
-    const addedContact = {
-      id: uuidv4(),
-      name: name,
-      number: number,
-    };
-
-    onSubmit(addedContact);
+    const contact = { id: uuidv4(), name, number };
+    dispatch(contactsActions.addContact(contact));
     resetForm();
   };
+
   const resetForm = () => {
     setName("");
     setNumber("");
   };
 
-  const onSubmit = () => {
-    dispatch(actions.addContact(name, number));
-  };
-
   return (
-    <FormStyled onSubmit={handleAddContact} contacts={contacts}>
-      <Label htmlFor={inputNameId}>
+    <FormStyled onSubmit={handleSubmit}>
+      <Label>
         Name
         <Input
           type="text"
@@ -60,11 +47,10 @@ export default function Form() {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           value={name}
-          id={inputNameId}
           onChange={handleChange}
         />
       </Label>
-      <Label htmlFor={inputNumberId}>
+      <Label>
         Number
         <Input
           type="tel"
@@ -73,7 +59,6 @@ export default function Form() {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           value={number}
-          id={inputNumberId}
           onChange={handleChange}
         />
       </Label>
