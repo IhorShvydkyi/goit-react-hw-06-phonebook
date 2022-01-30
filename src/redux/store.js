@@ -1,4 +1,8 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  getDefaultMiddleware,
+  combineReducers,
+} from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -16,7 +20,12 @@ import reducer from "./reducer";
 const contactsPersistConfig = {
   key: "contacts",
   storage,
+  blacklist: ["filter"],
 };
+
+const rootReducer = combineReducers({
+  contacts: persistReducer(contactsPersistConfig, reducer),
+});
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -28,7 +37,7 @@ const middleware = [
 ];
 
 const store = configureStore({
-  reducer: { contacts: persistReducer(contactsPersistConfig, reducer) },
+  reducer: rootReducer,
   devTools: process.env.NODE_ENV === "development",
   middleware,
 });
