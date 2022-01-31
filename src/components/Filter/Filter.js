@@ -16,7 +16,7 @@ const Filter = () => {
         type="text"
         value={value}
         onChange={(e) => {
-          dispatch(contactsActions.changeFilter(e.target.value));
+          dispatch(contactsActions.filterContact(e.target.value));
         }}
       />
     </Label>
