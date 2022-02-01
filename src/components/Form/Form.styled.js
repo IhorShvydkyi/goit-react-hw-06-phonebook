@@ -37,5 +37,6 @@ export const AddButton = styled.button`
   &:hover,
   :focus {
     background: #003366;
+    box-shadow: 1px -1px 5px 1px rgba(243, 4, 36, 0.18);
   }
 `;

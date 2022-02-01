@@ -7,6 +7,7 @@ export const ContactItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 10px;
 `;
 
 export const Number = styled.span`
@@ -24,5 +25,6 @@ export const DeleteBtn = styled.button`
   &:hover,
   :focus {
     background: #990000;
+    box-shadow: 1px -1px 5px 1px rgba(243, 4, 36, 0.18);
   }
 `;

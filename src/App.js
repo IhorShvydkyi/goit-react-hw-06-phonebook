@@ -3,6 +3,7 @@ import { Title, ContactsTitle } from "./App.styled";
 import Form from "./components/Form/Form";
 import Filter from "./components/Filter/Filter";
 import ContactList from "./components/Contacts/ContactList";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <ContactsTitle>Contacts</ContactsTitle>
         <Filter />
         <ContactList />
+        <ToastContainer />
       </Container>
     </>
   );
